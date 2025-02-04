@@ -39,7 +39,7 @@ function Sidebar({ isLoggedIn, setIsLoggedIn }) {
 
       <Link to="/category/phones" className="sb-items">
         <img src={phone} alt="Phones and Tablets" />
-        <p>Phones and Tablets</p>
+        <p>Phones and Accesories</p>
       </Link>
 
       <Link to="/category/home" className="sb-items">
@@ -54,7 +54,7 @@ function Sidebar({ isLoggedIn, setIsLoggedIn }) {
 
       <Link to="/category/car-accessories" className="sb-items">
         <img src={car} alt="Car Accessories" />
-        <p>Car Accessories</p>
+        <p>Car and Accessories</p>
       </Link>
 
       {isLoggedIn ? (

@@ -10,40 +10,56 @@ function CreatePost(){
     const [category,setcategory] = useState('')
     const [location,setlocation] = useState('')
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e) => {
         e.preventDefault(); // Prevents page reload
-        console.log('post created with :', name,description,image,price,category,location);
-        let data = {
-            name : name,
-            description : description,
-            image : image,
-            price : parseInt(price),
-            category: category,
-            location : location
+    
+        console.log('Post created with:', name, description, image, price, category, location);
+    
+        const token = localStorage.getItem('token'); // Retrieve token from local storage
+        if (!token) {
+            alert('No authorization token found. Please log in.');
+            return;
         }
-        axios.post("https://linky-backend-uk3y.onrender.com/admin/product", data, {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            withCredentials: true // Ensures cookies are included if needed
-        })
-        .then((response) => {
-            console.log(response.data);
-            
-        })
-        .catch((error) => {
-            console.error("signup error:", error.response.data);
-            const errorMessage = error.response.data.message;
-           
-            alert(errorMessage);
-        });
-        setname('');
-        setdescription('');
-        setimage('');
-        setprice('');
-        setcategory('');
-        setlocation('');
-    }
+    
+        let data = {
+            name: name,
+            description: description,
+            image: image,
+            price: parseInt(price),
+            category: category,
+            location: location
+        };
+    
+        try {
+            const response = await axios.post(
+                "https://linky-backend-uk3y.onrender.com/admin/product", 
+                data, 
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    withCredentials: true // Ensures cookies are included if needed
+                }
+            );
+    
+            console.log("Product created:", response.data);
+            alert("Product posted successfully!");
+    
+            // Clear input fields after successful submission
+            setname('');
+            setdescription('');
+            setimage('');
+            setprice('');
+            setcategory('');
+            setlocation('');
+        } catch (error) {
+            console.error("Error creating product:", error.response?.data || error.message);
+            alert(error.response?.data?.message || "Failed to create product");
+        }
+    };
+    
+    
 
     return(
         <AnimateStart>
@@ -64,9 +80,16 @@ function CreatePost(){
                     <input  type="price" value={price} onChange={(e) => setprice(e.target.value)} className="form-control" id="floatingInput" placeholder="product price"/>
                     <label htmlFor="floatingInput">product price</label>
                 </div>
-                <div className="form-floating mb-2">
-                    <input  type="category" value={category} onChange={(e) => setcategory(e.target.value)} className="form-control" id="floatingInput" placeholder="product category"/>
-                    <label htmlFor="floatingInput">product category</label>
+                <div>
+                    <label htmlFor="category">Choose a category:</label>
+
+                    <select className='form-control btn-primary mb-3' name="category" id="category" value={category} onChange={(e) => setcategory(e.target.value)}>
+                    <option value="laptops" >Laptop</option>
+                    <option value="clothes">clothes</option>
+                    <option value="home">home</option>
+                    <option value="car-accessories">car-accessories</option>
+                    <option value="phones">phones and accessories</option>
+                    </select>
                 </div>
                 <div className="form-floating mb-2">
                     <input  type="location" value={location} onChange={(e) => setlocation(e.target.value)} className="form-control" id="floatingInput" placeholder="product location"/>

@@ -7,21 +7,37 @@ function Orders() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+
+    if (!token) {
+        setError("No authorization token found");
+        setLoading(false);
+        return;
+    }
+
     fetch("https://linky-backend-uk3y.onrender.com/admin/orders", {
+      method: "GET", // Explicitly set the method
       headers: {
-        'Authorization': `Bearer ${token}`
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       }
     })
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} - ${response.statusText}`);
+      }
+      return response.json();
+    })
     .then((data) => {
       setOrders(data);
       setLoading(false);
     })
     .catch((error) => {
-      setError(error);
+      console.error("Fetch error:", error);
+      setError(error.message);
       setLoading(false);
     });
-  }, []);
+}, []);
+
 
   if (loading) return <p>Loading orders...</p>;
   if (error) return <p>Error fetching orders: {error.message}</p>;
