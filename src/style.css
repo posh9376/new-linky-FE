@@ -1,0 +1,125 @@
+.homepage{
+    height: 100vh;
+}
+.navbar{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.mainpage{
+    height: 100vh;
+}
+.data {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: transparent;
+}
+
+form {
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.mainpage{
+    border-radius: 10px;
+    display: flex;
+
+}
+.left-div{
+    width: 20%;
+    background-color: rgba(124, 120, 120, 0.075);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 100;
+    left: 0;
+    height: 70vh;
+}
+
+.sb-items{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+.sb-items img{
+    width: 30px;
+}
+Link{
+    text-decoration: none;
+    color: black;
+}
+Link:hover{
+    color: rgba(0, 119, 255, 0.74);
+}
+.mainDisp{
+    width: 70%;
+    padding-left: 20px;
+}
+
+.products{
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   gap: 10px; 
+   border-radius: 10px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.card{
+    background-color: rgba(0, 119, 255, 0.082);
+    text-align: center;
+}
+
+.cart{
+    margin-right: 20px;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+  
+.product-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
+  
+.product-card img {
+    width: 100%;
+    height: auto;
+}
+
+.location{
+    width: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+table th {
+    background-color: #f2f2f2;
+}
+  
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+  
+  
