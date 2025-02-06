@@ -61,8 +61,12 @@ function Signup({ setShowLogin }) {
                 <label htmlFor="floatingInput">Email address</label>
               </div>
               <div className="form-floating mb-2">
-                <input value={role} onChange={(e) => setRole(e.target.value)} type="role" className="form-control" id="floatingnput" placeholder="whats your role"/>
-                <label htmlFor="floatingInput">Role</label>
+                <select value={role} onChange={(e) => setRole(e.target.value)} className="form-select" id="floatingSelect" aria-label="Floating label select example">
+                  <select value="" disabled>select role</select>
+                  <option value="buyer">Buyer</option>
+                  <option value="admin">Admin</option>
+                </select>
+                <label htmlFor="floatingSelect">Role</label>
               </div>
               <div className="form-floating">
                 <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" id="floatingPassword" placeholder="Password"/>
